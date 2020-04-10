@@ -1,11 +1,12 @@
 <template>
   <div class="pa2">
-    hello
+    <TokenForm/>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import TokenForm from '@/components/TokenForm.vue'
 
 export default {
   name: 'home',
@@ -16,6 +17,6 @@ export default {
   methods: { },
   watch: { },
   computed: { },
-  components: { }
+  components: { TokenForm }
 }
 </script>
