@@ -6,7 +6,14 @@ build:
 	docker build -t $(IMAGE):$(TAG) .
 
 shell: build
-	docker run -it -v $(PWD):/app $(IMAGE):$(TAG) bash
+	docker run -it --network="host" \
+		-v $(PWD)/src:/app/src \
+		-v $(PWD)/public:/app/public \
+		$(IMAGE):$(TAG) \
+		bash
 
 server: build
-	docker run -it --network="host" -v $(PWD):/app $(IMAGE):$(TAG)
+	docker run -it --network="host" \
+		-v $(PWD)/src:/app/src \
+		-v $(PWD)/public:/app/public \
+		$(IMAGE):$(TAG)
