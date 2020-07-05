@@ -1,6 +1,6 @@
 <template>
   <div class="pa2">
-    Image:<br/>
+    Image: <span class="gray">{{ name }}</span><br/>
     <input v-model="image" placeholder="image loading...">
   </div>
 </template>
@@ -14,7 +14,8 @@ export default {
   },
   data() {
     return {
-      image: ""
+      image: "",
+      name: "",
     }
   },
   methods: {
@@ -28,10 +29,11 @@ export default {
         var selectedImage = "";
         for (var i = 0; i < data.images.length; i++) {
           if (data.images[i].description.startsWith("dev-machine")) {
-            selectedImage = data.images[i].id;
+            // last image is the one we want
+            app.image = data.images[i].id;
+            app.name = data.images[i].description;
           }
         }
-        app.image = selectedImage;
       }).catch(function (error) {
         console.log(error);
       })
