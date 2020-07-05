@@ -1,7 +1,8 @@
 <template>
   <div class="pa2">
-    <button v-on:click="createServer">Create</button>
-    <pre>{{ message }}</pre>
+    <button class="db" v-on:click="createServer">Create</button>
+    <input class="w-100" id="ip" type="text" :value=message />
+    <button class="db" v-on:click="copy">Copy</button>
   </div>
 </template>
 
@@ -14,6 +15,12 @@ export default {
     return { message: "" }
   },
   methods: {
+    copy: function() {
+      var copyText = document.querySelector("#ip");
+      copyText.select();
+      document.execCommand("copy");
+    },
+
     createServer: function() {
       const config = {
         headers: { Authorization: `Bearer ${localStorage.token}` }
@@ -22,7 +29,7 @@ export default {
 
       const app = this;
       axios.post("https://api.hetzner.cloud/v1/servers", requestData, config).then(({ data }) => {
-        app.message = JSON.stringify(data, undefined, 2);
+        app.message = data.server.public_net.ipv4.ip;
       }).catch(function (error) {
         app.message = error;
       })

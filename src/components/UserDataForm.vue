@@ -10,8 +10,10 @@ import axios from 'axios';
 
 export default {
   mounted() {
-    if (localStorage.userData) {
+    if (localStorage.userData && localStorage.userData != "") {
       this.userData = localStorage.userData;
+    } else {
+      this.loadUserData()
     }
   },
   data() {

@@ -1,7 +1,7 @@
 <template>
   <div class="pa2">
-    Data:
-    <button v-on:click="updateData">Refresh</button>
+    Server Config:
+    <button v-on:click="updateData">Build</button>
     <pre style="overflow-x: scroll;">{{ JSON.stringify(data, undefined, 2) }}</pre>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
     }
   },
   methods: {
-	updateData: function() {
+  updateData: function() {
       const userDataLines = localStorage.userData.split("\n")
       const secretEnvLines = localStorage.secretEnv.split("\n")
 
