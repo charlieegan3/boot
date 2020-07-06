@@ -32,6 +32,8 @@ export default {
             // last image is the one we want
             app.image = data.images[i].id;
             app.name = data.images[i].description;
+            // localStorage for other components and later on
+            localStorage.image = data.images[i].id;
           }
         }
       }).catch(function (error) {
